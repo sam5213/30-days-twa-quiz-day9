@@ -58,7 +58,7 @@ function showResults() {
     document.getElementById('share-vk').style.display = 'block'; // Показываем кнопку "Поделиться в VK"
 }
 
-document.getElementById('submit-results').onclick = sendResults;
+document.getElementById('submit-results').onclick = sendResults(userAnswers);
 
 document.getElementById('share-vk').onclick = function() {
     const title = "Я прошел квиз!";
