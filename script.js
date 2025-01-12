@@ -20,13 +20,18 @@ fetch('questions.json')
 
 
 function displayQuestion() {
-    const quizContainer = document.getElementById('quiz-container');
-    const currentQuestion = questions[currentQuestionIndex];
-    quizContainer.innerHTML = `<h2>${currentQuestion.question}</h2>`;
-    currentQuestion.options.forEach(option => {
-        quizContainer.innerHTML += `<button onclick="checkAnswer('${option}')">${option}</button>`;
-    });
+    if (questions.length > 0 && currentQuestionIndex < questions.length) {
+        const quizContainer = document.getElementById('quiz-container');
+        const currentQuestion = questions[currentQuestionIndex];
+        quizContainer.innerHTML = `<h2>${currentQuestion.question}</h2>`;
+        currentQuestion.options.forEach(option => {
+            quizContainer.innerHTML += `<button onclick="checkAnswer('${option}')">${option}</button>`;
+        });
+    } else {
+        quizContainer.innerHTML = '<h2>Нет доступных вопросов.</h2>';
+    }
 }
+
 
 function checkAnswer(selectedOption) {
     const currentQuestion = questions[currentQuestionIndex];
