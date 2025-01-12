@@ -1,5 +1,3 @@
-import { selectAnswer, sendResults } from './resultsProcess.js'
-
 let currentQuestionIndex = 0;
 let results = [];
 let userAnswers = [];
@@ -70,3 +68,5 @@ document.getElementById('share-vk').onclick = function() {
 };
 
 displayQuestion();
+
+import { selectAnswer, sendResults } from './resultsProcess.js'
