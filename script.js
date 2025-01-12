@@ -1,6 +1,7 @@
 let currentQuestionIndex = 0;
 let results = [];
 let userAnswers = [];
+let questions = [];
 
 fetch('questions.json')
     .then(response => {
@@ -9,8 +10,9 @@ fetch('questions.json')
         }
         return response.json(); // Преобразуем ответ в JSON
     })
-    .then(questions => {
-        console.log(questions); // Здесь вы можете работать с загруженными вопросами
+    .then(data => {
+        questions = data; // Присваиваем загруженные данные переменной questions
+        displayQuestion(); // Вызываем функцию для отображения вопроса
     })
     .catch(error => {
         console.error('Произошла ошибка при загрузке вопросов:', error);
