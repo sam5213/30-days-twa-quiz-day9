@@ -6,40 +6,7 @@
     <title>Квиз с результатами</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-        }
-        #quiz-container {
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        button {
-            margin-top: 10px;
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .share-button {
-            background-color: #4CAF50; /* Зеленый цвет для кнопки поделиться */
-        }
-        .share-button:hover {
-            background-color: #45a049; /* Темнее при наведении */
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="quiz-container"></div>
@@ -50,84 +17,6 @@
         <button class="share-button" id="share-vk">Поделиться в VK</button>
     </div>
 
-    <script>
-        const questions = [
-            {
-                question: "Какой цвет небо?",
-                options: ["Синий", "Зеленый", "Красный"],
-                answer: "Синий"
-            },
-            {
-                question: "Кто написал 'Войну и мир'?",
-                options: ["Толстой", "Достоевский", "Пушкин"],
-                answer: "Толстой"
-            }
-        ];
-
-        let currentQuestionIndex = 0;
-        let results = [];
-        let userAnswers = [];
-
-        function displayQuestion() {
-            const quizContainer = document.getElementById('quiz-container');
-            const currentQuestion = questions[currentQuestionIndex];
-            quizContainer.innerHTML = `<h2>${currentQuestion.question}</h2>`;
-            currentQuestion.options.forEach(option => {
-                quizContainer.innerHTML += `<button onclick="checkAnswer('${option}')">${option}</button>`;
-            });
-        }
-
-        function checkAnswer(selectedOption) {
-            const currentQuestion = questions[currentQuestionIndex];
-            results.push(selectedOption);
-            selectAnswer(selectedOption, currentQuestion.answer);
-            currentQuestionIndex++;
-            if (currentQuestionIndex < questions.length) {
-                displayQuestion();
-            } else {
-                showResults();
-            }
-        }
-
-        function showResults() {
-            const quizContainer = document.getElementById('quiz-container');
-            quizContainer.innerHTML = '<h2>Ваши результаты:</h2>';
-            results.forEach((result, index) => {
-                quizContainer.innerHTML += `<p>Вопрос ${index + 1}: ${result}</p>`;
-            });
-            document.getElementById('submit-results').style.display = 'block';
-            document.getElementById('share-container').style.display = 'block';
-            document.getElementById('share-vk').style.display = 'block'; // Показываем кнопку "Поделиться в VK"
-        }
-
-        function selectAnswer(selected, correct) {
-            userAnswers.push({ selected, correct }); // Сохраняем ответ пользователя
-        }
-
-        function sendResults() {
-            const resultsToSend = userAnswers.map((answer, index) => {
-                return `Вопрос ${index + 1}: Вы выбрали "${answer.selected}", правильный ответ: "${answer.correct}"`;
-            }).join('\n');
-
-            // Форматируем данные в JSON
-            const dataToSend = JSON.stringify({ resultsToSend });
-
-            // Отправляем данные в бот
-            Telegram.WebApp.sendData(dataToSend);
-        }
-
-        document.getElementById('submit-results').onclick = sendResults;
-
-        document.getElementById('share-vk').onclick = function() {
-            const title = "Я прошел квиз!";
-            const description = "Посмотрите, как я справился с вопросами! Присоединяйтесь к квизу и проверьте свои знания.";
-            const url = encodeURIComponent(window.location.href); // URL вашего квиза
-            const shareUrl = `https://vk.com/share.php?url=${url}&title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
-            
-            window.open(shareUrl, '_blank');
-        };
-
-        displayQuestion();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html> 
