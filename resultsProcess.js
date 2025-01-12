@@ -1,8 +1,8 @@
-export function selectAnswer(selected, correct) {
+export function selectAnswer(userAnswers, selected, correct) {
     userAnswers.push({ selected, correct }); // Сохраняем ответ пользователя
 }
 
-export function sendResults() {
+export function sendResults(userAnswers) {
     const resultsToSend = userAnswers.map((answer, index) => {
         return `Вопрос ${index + 1}: Вы выбрали "${answer.selected}", правильный ответ: "${answer.correct}"`;
     }).join('\n');
