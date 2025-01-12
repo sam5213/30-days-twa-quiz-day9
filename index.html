@@ -116,11 +116,6 @@
 
         document.getElementById('submit-results').onclick = sendResults;
 
-        document.getElementById('share-facebook').onclick = function() {
-            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
-            window.open(shareUrl, '_blank');
-        };
-
         document.getElementById('share-vk').onclick = function() {
             const title = "Я прошел квиз!";
             const description = "Посмотрите, как я справился с вопросами! Присоединяйтесь к квизу и проверьте свои знания.";
