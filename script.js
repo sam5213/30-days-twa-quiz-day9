@@ -1,3 +1,5 @@
+import { selectAnswer, sendResults } from './resultsProcess.js'
+
 let currentQuestionIndex = 0;
 let results = [];
 let userAnswers = [];
@@ -36,7 +38,7 @@ function displayQuestion() {
 function checkAnswer(selectedOption) {
     const currentQuestion = questions[currentQuestionIndex];
     results.push(selectedOption);
-    selectAnswer(selectedOption, currentQuestion.answer);
+    selectAnswer(userAnswers, selectedOption, currentQuestion.answer);
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         displayQuestion();
@@ -69,4 +71,4 @@ document.getElementById('share-vk').onclick = function() {
 
 displayQuestion();
 
-import { selectAnswer, sendResults } from './resultsProcess.js'
+
