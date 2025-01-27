@@ -146,7 +146,7 @@ class Quiz {
 
         document.getElementById('finish-page').style.display = 'none';
         document.getElementById('results-page').style.display = 'flex';	
-	document.getElementById('share-vk').style.display = 'flex';
+	displayResultsChart();
         document.getElementById('share-vk').onclick = function() {
             const title = "Я прошел квиз!";
             const description = "Посмотрите, как я справился с вопросами! Присоединяйтесь к квизу и проверьте свои знания.";
@@ -155,6 +155,33 @@ class Quiz {
             
             window.open(shareUrl, '_blank');
         };
+    }
+	
+    displayResultsChart() {
+	const ctx = document.getElementById('resultsChart').getContext('2d');
+	const correctAnswers = this.userAnswers.filter(result => this.userAnswers).length;
+	const incorrectAnswers = this.userAnswers.length - correctAnswers;
+	
+	const chart = new Chart(ctx, {
+	type: 'bar',
+	data: {
+	    labels: ['Правильные', 'Неправильные'],
+		datasets: [{
+		    label: 'Результаты квиза',
+		    data: [correctAnswers, incorrectAnswers],
+		    backgroundColor: ['#4CAF50', '#F44336'],
+		}]
+	    },
+	    options: {
+		scales: {
+		    y: {
+			beginAtZero: true
+		    }
+		}
+	    }
+	});
+	
+	document.getElementById('resultsChart').style.display = 'block';
     }
 }
 
