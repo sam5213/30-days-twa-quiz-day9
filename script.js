@@ -159,7 +159,7 @@ class Quiz {
 	
     displayResultsChart() {
 	const ctx = document.getElementById('resultsChart').getContext('2d');
-	const correctAnswers = this.userAnswers.filter(result => this.userAnswers).length;
+	const correctAnswers = this.userAnswers.filter(result => result).length;
 	const incorrectAnswers = this.userAnswers.length - correctAnswers;
 	
 	const chart = new Chart(ctx, {
