@@ -30,7 +30,7 @@ class Quiz {
                 return response.json(); // Преобразуем ответ в JSON
             })
             .then(data => {
-                questions = data; // Присваиваем загруженные данные переменной questions
+                this.questions = data; // Присваиваем загруженные данные переменной questions
             })
             .catch(error => {
                 console.error('Произошла ошибка при загрузке вопросов:', error);
