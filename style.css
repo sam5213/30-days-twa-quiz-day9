@@ -55,6 +55,13 @@ h1 {
   margin-bottom: 2rem;
 }
 
+h2 {
+  font-size: 1.5rem;
+  color: #1a3d4c;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
 .button {
   background-color: #1a3d4c;
   color: white;
@@ -191,9 +198,3 @@ h1 {
     margin-bottom: 20px;
 }
 
-.share-button {
-    background-color: #4CAF50; /* Зеленый цвет для кнопки поделиться */
-}
-.share-button:hover {
-    background-color: #45a049; /* Темнее при наведении */
-}
