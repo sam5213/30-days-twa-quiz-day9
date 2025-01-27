@@ -109,6 +109,7 @@ class Quiz {
         const selected = this.questions[this.currentQuestion].options[index];
         const correct = this.questions[this.currentQuestion].options[0];
         this.userAnswers.push({ selected, correct });
+	this.results.push(selected === correct);
 
         // Update UI to show selected answer
         const options = document.querySelectorAll('.option');
@@ -159,8 +160,8 @@ class Quiz {
 	
     displayResultsChart() {
 	const ctx = document.getElementById('resultsChart').getContext('2d');
-	const correctAnswers = this.userAnswers.filter(result => result).length;
-	const incorrectAnswers = this.userAnswers.length - correctAnswers;
+	const correctAnswers = this.results.filter(result => result).length;
+	const incorrectAnswers = this.results.length - correctAnswers;
 	
 	const chart = new Chart(ctx, {
 	type: 'bar',
