@@ -1,5 +1,3 @@
-import { selectAnswer, sendResults } from './resultsProcess.js'
-
 let currentQuestionIndex = 0;
 let results = [];
 let userAnswers = [];
@@ -56,6 +54,22 @@ function showResults() {
     document.getElementById('submit-results').style.display = 'block';
     document.getElementById('share-container').style.display = 'block';
     document.getElementById('share-vk').style.display = 'block'; // Показываем кнопку "Поделиться в VK"
+}
+
+function selectAnswer(userAnswers, selected, correct) {
+    userAnswers.push({ selected, correct }); // Сохраняем ответ пользователя
+}
+
+function sendResults(userAnswers) {
+    const resultsToSend = userAnswers.map((answer, index) => {
+        return `Вопрос ${index + 1}: Вы выбрали "${answer.selected}", правильный ответ: "${answer.correct}"`;
+    }).join('\n');
+
+    // Форматируем данные в JSON
+    const dataToSend = JSON.stringify({ resultsToSend });
+
+    // Отправляем данные в бот
+    Telegram.WebApp.sendData(dataToSend);
 }
 
 document.getElementById('submit-results').onclick = sendResults(userAnswers);
