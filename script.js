@@ -31,7 +31,6 @@ class Quiz {
             })
             .then(data => {
                 questions = data; // Присваиваем загруженные данные переменной questions
-                displayQuestion(); // Вызываем функцию для отображения вопроса
             })
             .catch(error => {
                 console.error('Произошла ошибка при загрузке вопросов:', error);
