@@ -20,7 +20,7 @@ fetch('questions.json')
 
 
 function displayQuestion() {
-    const quizContainer = document.getElementById('quiz-container');
+    const quizContainer = document.getElementById('quiz-page');
     if (questions.length > 0 && currentQuestionIndex < questions.length) {
         const currentQuestion = questions[currentQuestionIndex];
         quizContainer.innerHTML = `<h2>${currentQuestion.question}</h2>`;
@@ -46,12 +46,12 @@ function checkAnswer(selectedOption) {
 }
 
 function showResults() {
-    const quizContainer = document.getElementById('quiz-container');
+    const quizContainer = document.getElementById('quiz-page');
     quizContainer.innerHTML = '<h2>Ваши результаты:</h2>';
     results.forEach((result, index) => {
         quizContainer.innerHTML += `<p>Вопрос ${index + 1}: ${result}</p>`;
     });
-    document.getElementById('submit-results').style.display = 'block';
+    document.getElementById('finish-button').style.display = 'block';
     document.getElementById('share-container').style.display = 'block';
     document.getElementById('share-vk').style.display = 'block'; // Показываем кнопку "Поделиться в VK"
 }
@@ -72,7 +72,7 @@ function sendResults(userAnswers) {
     Telegram.WebApp.sendData(dataToSend);
 }
 
-document.getElementById('submit-results').onclick = sendResults(userAnswers);
+document.getElementById('finish-button').onclick = sendResults(userAnswers);
 
 document.getElementById('share-vk').onclick = function() {
     const title = "Я прошел квиз!";
