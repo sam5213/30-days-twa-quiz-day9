@@ -3,20 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Квиз с результатами</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>Квиз с результатами</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="quiz-container"></div>
-    <canvas id="resultsChart" width="400" height="200" style="display: none;"></canvas>
-    <button id="submit-results" style="display: none;">Завершить квиз</button>
-    <div id="share-container" style="display: none;">
-        <h3>Поделитесь своими результатами!</h3>
-        <button class="share-button" id="share-vk">Поделиться в VK</button>
+    <div id="app">
+        <div id="welcome-page" class="page active">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="content">
+                <h1>Определим требования <br>к будущему квизу</h1>
+                <button id="start-button" class="button">Поехали!</button>
+            </div>
+        </div>
+        <div id="quiz-page" class="page">
+            <div class="question-container">
+                <div class="avatar">
+                    <img src="avatar.jpeg" alt="Avatar">
+                </div>
+                <div class="question-bubble">
+                    <p id="question-text"></p>
+                </div>
+            </div>
+            <div id="options-grid" class="options-grid"></div>
+        </div>
+        <div id="finish-page" class="page custom-page">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="content">
+                <h1>Поздравляю!<br>Вы успешно прошли квиз.</h1>
+                <button id="finish-button" class="button">Отправить результаты</button>
+            </div>
+        </div>
+        <div id="results-page" class="page custom-page">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="content">
+                <h1>Результаты отправлены!</h1>
+                <div id="share-container" style="display: none;">
+                    <canvas id="resultsChart" width="400" height="200" style="display: none;"></canvas>
+                    <h3>Поделитесь своими результатами!</h3>
+                    <button class="share-button" id="share-vk">Поделиться в VK</button>
+                </div>
+            </div>
+        </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html> 
