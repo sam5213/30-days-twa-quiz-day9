@@ -146,7 +146,7 @@ class Quiz {
 
         document.getElementById('finish-page').style.display = 'none';
         document.getElementById('results-page').style.display = 'flex';	
-	displayResultsChart();
+	this.displayResultsChart();
         document.getElementById('share-vk').onclick = function() {
             const title = "Я прошел квиз!";
             const description = "Посмотрите, как я справился с вопросами! Присоединяйтесь к квизу и проверьте свои знания.";
