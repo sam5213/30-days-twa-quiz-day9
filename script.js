@@ -9,10 +9,10 @@ class Quiz {
         this.init();
     }
 
-    init() {
+    async init() {
         // Welcome page
         document.getElementById('start-button').addEventListener('click', () => this.startQuiz());
-	    document.getElementById('finish-button').addEventListener('click', () => this.sendResults());
+	document.getElementById('finish-button').addEventListener('click', () => this.sendResults());
 
         // Create SVG icons
         this.icons = [
@@ -22,19 +22,20 @@ class Quiz {
             this.createIcon('x', '#ef4444')
         ];
 
-        fetch('questions.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Сеть ответила с ошибкой: ' + response.status);
-                }
-                return response.json(); // Преобразуем ответ в JSON
-            })
-            .then(data => {
-                this.questions = data; // Присваиваем загруженные данные переменной questions
-            })
-            .catch(error => {
-                console.error('Произошла ошибка при загрузке вопросов:', error);
-            });
+        // Загрузка вопросов из JSON-файла
+        await this.loadQuestions();
+    }
+
+    async loadQuestions() {
+        try {
+            const response = await fetch('./questions.json');
+            if (!response.ok) {
+                throw new Error('Сеть ответила с ошибкой: ' + response.status);
+            }
+            this.questions = await response.json(); // Присваиваем загруженные данные переменной questions
+        } catch (error) {
+            console.error('Произошла ошибка при загрузке вопросов:', error);
+        }
     }
 
     createIcon(type, color) {
@@ -160,5 +161,3 @@ class Quiz {
 document.addEventListener('DOMContentLoaded', () => {
     new Quiz();
 });
-
-
