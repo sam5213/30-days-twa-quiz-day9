@@ -170,7 +170,7 @@ class Quiz {
 		datasets: [{
 		    label: 'Результаты квиза',
 		    data: [correctAnswers, incorrectAnswers],
-		    backgroundColor: ['#4CAF50', '#F44336'],
+		    backgroundColor: ['#3CB371', '#CD5C5C'],
 		}]
 	    },
 	    options: {
