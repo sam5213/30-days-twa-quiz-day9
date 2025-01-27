@@ -79,7 +79,7 @@ class Quiz {
     }
 
     showQuestion() {
-        const question = questions[this.currentQuestion];
+        const question = this.questions[this.currentQuestion];
         document.getElementById('question-text').textContent = question.question;
 
         const optionsGrid = document.getElementById('options-grid');
@@ -106,8 +106,8 @@ class Quiz {
     selectAnswer(index) {
         this.answers[this.currentQuestion] = index;
 
-        const selected = questions[this.currentQuestion].options[index];
-        const correct = questions[this.currentQuestion].options[0];
+        const selected = this.questions[this.currentQuestion].options[index];
+        const correct = this.questions[this.currentQuestion].options[0];
         this.userAnswers.push({ selected, correct });
 
         // Update UI to show selected answer
@@ -116,7 +116,7 @@ class Quiz {
         options[index].classList.add('selected');
 
         // Move to next question after a short delay
-        if (this.currentQuestion < questions.length - 1) {
+        if (this.currentQuestion < this.questions.length - 1) {
             setTimeout(() => {
                 this.currentQuestion++;
                 this.showQuestion();
