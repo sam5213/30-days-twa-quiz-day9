@@ -161,8 +161,8 @@ class Quiz {
 
 	document.getElementById("share-vk").addEventListener("click", () => {
 	    const url = "https://sam5213.github.io/30-days-twa-quiz-day9";
-	    const VKlink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=`Мой результат в квизе ${this.incorrectAnswersCount} из 2! Проверь тоже свои силы в @twa_quiz_30_days_bot.``;
-	    window.open(VKlink, "_blank", "width=auto", "height=auto");
+	    const VKlink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=Мой результат в квизе "${this.incorrectAnswersCount}" из 2! Проверь тоже свои силы в @twa_quiz_30_days_bot.`;
+	    window.open(VKlink, "_blank", "width=auto,height=auto");
 	});	
     }
 	
