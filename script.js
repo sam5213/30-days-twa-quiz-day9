@@ -6,6 +6,8 @@ class Quiz {
         this.results = [];
         this.userAnswers = [];
         this.questions = [];
+	this.correctAnswersCount = 0;
+	this.incorrectAnswersCount = 0;  
         this.init();
     }
 
@@ -148,20 +150,26 @@ class Quiz {
         document.getElementById('finish-page').style.display = 'none';
         document.getElementById('results-page').style.display = 'flex';	
 	this.displayResultsChart();
-        document.getElementById('share-vk').onclick = function() {
-            const title = "Я прошел квиз!";
-            const description = "Посмотрите, как я справился с вопросами! Присоединяйтесь к квизу и проверьте свои знания.";
-            const url = encodeURIComponent(window.location.href); // URL вашего квиза
-            const shareUrl = `https://vk.com/share.php?url=${url}&title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
+        // document.getElementById('share-vk').onclick = function() {
+        //     const title = "Я прошел квиз!";
+        //     const description = "Посмотрите, как я справился с вопросами! Присоединяйтесь к квизу и проверьте свои знания.";
+        //     const url = encodeURIComponent(window.location.href); // URL вашего квиза
+        //     const shareUrl = `https://vk.com/share.php?url=${url}&title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
             
-            window.open(shareUrl, '_blank');
-        };
+        //     window.open(shareUrl, '_blank');
+        // };
+
+	document.getElementById("share-vk").addEventListener("click", () => {
+	    const url = "https://sam5213.github.io/30-days-twa-quiz-day9";
+	    const VKlink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=`Мой результат в квизе ${this.incorrectAnswersCount} из 2! Проверь тоже свои силы в @twa_quiz_30_days_bot.``;
+	    window.open(VKlink, "_blank", "width=auto", "height=auto");
+	});	
     }
 	
     displayResultsChart() {
 	const ctx = document.getElementById('resultsChart').getContext('2d');
-	const correctAnswers = this.results.filter(result => result).length;
-	const incorrectAnswers = this.results.length - correctAnswers;
+	this.correctAnswersCount = this.results.filter(result => result).length;
+	this.incorrectAnswersCount = this.results.length - correctAnswers;
 	
 	const chart = new Chart(ctx, {
 	type: 'bar',
