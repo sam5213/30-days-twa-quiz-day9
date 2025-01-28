@@ -167,7 +167,7 @@ class Quiz {
 
 	document.getElementById("share-vk").addEventListener("click", () => {
 	    const url = "https://t.me/twa_quiz_30_days_bot";
-	    const title = `Мой результат в квизе ${this.incorrectAnswersCount} из 2! Проверь тоже свои силы в телеграм боте @twa_quiz_30_days_bot.`;
+	    const title = `Мой результат в квизе ${this.correctAnswersCount} из 2! Проверь тоже свои силы в телеграм боте @twa_quiz_30_days_bot.`;
 	    
 	    // URL для открытия приложения ВКонтакте
 	    const appLink = `vk://share?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
@@ -186,7 +186,7 @@ class Quiz {
 	            // Если прошло менее 2 секунд, значит приложение не открылось, открываем в браузере
 	            window.location = webLink;
 	        }
-	    }, 1500); // Проверяем через 1.5 секунды
+	    }, 2500); // Проверяем через 2.5 секунды
 	});
     }
 	
