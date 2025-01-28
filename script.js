@@ -159,11 +159,35 @@ class Quiz {
         //     window.open(shareUrl, '_blank');
         // };
 
+	// document.getElementById("share-vk").addEventListener("click", () => {
+	//     const url = "https://sam5213.github.io/30-days-twa-quiz-day9";
+	//     const VKlink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=Мой результат в квизе ${this.incorrectAnswersCount} из 2! Проверь тоже свои силы в телеграм боте @twa_quiz_30_days_bot.`;
+	//     window.open(VKlink, "_blank", "width=auto,height=auto");
+	// });	
+
 	document.getElementById("share-vk").addEventListener("click", () => {
-	    const url = "https://sam5213.github.io/30-days-twa-quiz-day9";
-	    const VKlink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=Мой результат в квизе "${this.incorrectAnswersCount}" из 2! Проверь тоже свои силы в @twa_quiz_30_days_bot.`;
-	    window.open(VKlink, "_blank", "width=auto,height=auto");
-	});	
+	    const url = "https://t.me/twa_quiz_30_days_bot";
+	    const title = `Мой результат в квизе ${this.incorrectAnswersCount} из 2! Проверь тоже свои силы в телеграм боте @twa_quiz_30_days_bot.`;
+	    
+	    // URL для открытия приложения ВКонтакте
+	    const appLink = `vk://share?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+	    
+	    // URL для открытия в браузере
+	    const webLink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+	
+	    // Попытка открыть приложение
+	    const start = Date.now();
+	    window.location = appLink;
+	
+	    // Проверка, открыто ли приложение
+	    setTimeout(() => {
+	        const end = Date.now();
+	        if (end - start < 2000) {
+	            // Если прошло менее 2 секунд, значит приложение не открылось, открываем в браузере
+	            window.location = webLink;
+	        }
+	    }, 1500); // Проверяем через 1.5 секунды
+	});
     }
 	
     displayResultsChart() {
