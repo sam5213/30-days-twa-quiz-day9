@@ -169,7 +169,7 @@ class Quiz {
     displayResultsChart() {
 	const ctx = document.getElementById('resultsChart').getContext('2d');
 	this.correctAnswersCount = this.results.filter(result => result).length;
-	this.incorrectAnswersCount = this.results.length - correctAnswers;
+	this.incorrectAnswersCount = this.results.length - this.correctAnswersCount;
 	
 	const chart = new Chart(ctx, {
 	type: 'bar',
@@ -177,7 +177,7 @@ class Quiz {
 	    labels: ['Правильные', 'Неправильные'],
 		datasets: [{
 		    label: 'Результаты квиза',
-		    data: [correctAnswers, incorrectAnswers],
+		    data: [this.correctAnswersCount, this.incorrectAnswersCount],
 		    backgroundColor: ['#3CB371', '#CD5C5C'],
 		}]
 	    },
