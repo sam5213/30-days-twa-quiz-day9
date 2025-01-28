@@ -177,14 +177,16 @@ class Quiz {
 	
 	    // Попытка открыть приложение
 	    const start = Date.now();
-	    window.location = appLink;
+	    //window.location = appLink;
+	    window.open(appLink, "_blank", "width=auto,height=auto");
 	
 	    // Проверка, открыто ли приложение
 	    setTimeout(() => {
 	        const end = Date.now();
 	        if (end - start < 3000) {
 	            // Если прошло менее 2 секунд, значит приложение не открылось, открываем в браузере
-	            window.location = webLink;
+	            // window.location = webLink;
+		    window.open(webLink, "_blank", "width=auto,height=auto");
 	        }
 	    }, 2500); // Проверяем через 1.5 секунды
 	});
