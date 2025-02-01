@@ -150,6 +150,21 @@ class Quiz {
         document.getElementById('finish-page').style.display = 'none';
         document.getElementById('results-page').style.display = 'flex';	
 	this.displayResultsChart();
+
+	document.getElementById("share-whatsapp").addEventListener("click", () => {
+	    const url = "https://t.me/twa_quiz_30_days_bot";
+	    const message = `Мой результат в квизе ${this.incorrectAnswersCount} из 2! Проверь тоже свои силы в @twa_quiz_30_days_bot. ${url}`;
+	    const whatsappLink = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+	    window.open(whatsappLink, "_blank", "width=auto", "height=auto");
+	});
+
+	document.getElementById("share-telegram").addEventListener("click", () => {
+	    const url = "https://t.me/twa_quiz_30_days_bot";
+	    const message = `Мой результат в квизе ${this.incorrectAnswersCount} из 2! Проверь тоже свои силы в @twa_quiz_30_days_bot. ${url}`;
+	    const telegramLink = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(message)}`;
+	    window.open(telegramLink, "_blank", "width=auto", "height=auto");
+	});
+
         // document.getElementById('share-vk').onclick = function() {
         //     const title = "Я прошел квиз!";
         //     const description = "Посмотрите, как я справился с вопросами! Присоединяйтесь к квизу и проверьте свои знания.";
