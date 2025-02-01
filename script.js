@@ -159,11 +159,11 @@ class Quiz {
         //     window.open(shareUrl, '_blank');
         // };
 
-	// document.getElementById("share-vk").addEventListener("click", () => {
-	//     const url = "https://sam5213.github.io/30-days-twa-quiz-day9";
-	//     const VKlink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=Мой результат в квизе ${this.incorrectAnswersCount} из 2! Проверь тоже свои силы в телеграм боте @twa_quiz_30_days_bot.`;
-	//     window.open(VKlink, "_blank", "width=auto,height=auto");
-	// });	
+	document.getElementById("share-vk").addEventListener("click", () => {
+	    const url = "https://t.me/twa_quiz_30_days_bot";
+	    const VKlink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=Мой результат в квизе ${this.incorrectAnswersCount} из 2! Проверь тоже свои силы в телеграм боте @twa_quiz_30_days_bot.`;
+	    window.open(VKlink, "_blank", "width=auto,height=auto");
+	});	
 
 	// document.getElementById("share-vk").addEventListener("click", () => {
 	//     const url = "https://t.me/twa_quiz_30_days_bot";
@@ -182,17 +182,17 @@ class Quiz {
 	//     }, 2000);
 	// });
 
-	document.getElementById("share-vk").addEventListener("click", () => {
-	    const url = "https://t.me/twa_quiz_30_days_bot";
-	    const title = `Мой результат в квизе ${this.correctAnswersCount} из 2! Проверь тоже свои силы в телеграм боте @twa_quiz_30_days_bot.`;
+	// document.getElementById("share-vk").addEventListener("click", () => {
+	//     const url = "https://t.me/twa_quiz_30_days_bot";
+	//     const title = `Мой результат в квизе ${this.correctAnswersCount} из 2! Проверь тоже свои силы в телеграм боте @twa_quiz_30_days_bot.`;
 	    
-	    // Формируем ссылки (без title в deeplink)
-	    const appLink = `vk://share?url=${encodeURIComponent(url)}`; // Убрали title
-	    const webLink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+	//     // Формируем ссылки (без title в deeplink)
+	//     const appLink = `vk://share?url=${encodeURIComponent(url)}`; // Убрали title
+	//     const webLink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
 	
-	    // Проверяем, мобильное ли устройство
-	    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-	    window.open(appLink, "_blank", "width=auto,height=auto");
+	//     // Проверяем, мобильное ли устройство
+	//     const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+	//     window.open(appLink, "_blank", "width=auto,height=auto");
 	
 	//     if (isMobile) {
 	//         let appWindow = null;
@@ -233,7 +233,7 @@ class Quiz {
 	//         // Для десктопов сразу открываем ве б-версию
 	//         window.open(webLink, "_blank", "width=auto,height=auto");
 	//     }
-	 });
+	 // });
     }
 	
     displayResultsChart() {
