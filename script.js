@@ -233,7 +233,7 @@ class Quiz {
 	//         // Для десктопов сразу открываем ве б-версию
 	//         window.open(webLink, "_blank", "width=auto,height=auto");
 	//     }
-	// });
+	 });
     }
 	
     displayResultsChart() {
