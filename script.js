@@ -197,11 +197,10 @@ class Quiz {
 	        window.open(appLink, "_blank", "width=auto,height=auto");
 	
 	        const checkAppOpened = setTimeout(() => {
-	            const end = Date.now();
-	            if (end - start >= 2000) {
+	            if (Date.now() - start >= 2500) {
 	                window.open(webLink, "_blank", "width=auto,height=auto");
 	            }
-	        }, 2000);
+	        }, 2500);
 	        
 	        window.addEventListener('beforeunload', () => {
 	            clearTimeout(checkAppOpened);
