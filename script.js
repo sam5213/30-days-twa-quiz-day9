@@ -186,27 +186,35 @@ class Quiz {
 	    const url = "https://t.me/twa_quiz_30_days_bot";
 	    const title = `Мой результат в квизе ${this.correctAnswersCount} из 2! Проверь тоже свои силы в телеграм боте @twa_quiz_30_days_bot.`;
 	    
-	    const appLink = `vk://share?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+	    // Формируем ссылки (без title в deeplink)
+	    const appLink = `vk://share?url=${encodeURIComponent(url)}`; // Убрали title
 	    const webLink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
 	
-	    // Проверяем, является ли устройство мобильным
+	    // Проверяем, мобильное ли устройство
 	    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 	
 	    if (isMobile) {
-	        const start = Date.now();
-	        window.open(appLink, "_blank", "width=auto,height=auto");
+	        let appWindow = null;
+	        try {
+	            // Пытаемся открыть приложение
+	            appWindow = window.open(appLink, "_blank", "width=auto,height=auto");
+	        } catch (e) {
+	            // Если возникла ошибка, сразу открываем веб-версию
+	            window.open(webLink, "_blank", "width=auto,height=auto");
+	            return;
+	        }
 	
-	        const checkAppOpened = setTimeout(() => {
-	            if (Date.now() - start >= 2500) {
+	        // Таймер для проверки успешности открытия приложения
+	        const start = Date.now();
+	        const checkAppOpened = setInterval(() => {
+	            // Если окно приложения закрыто или не открылось за 3 секунды
+	            if (appWindow.closed || Date.now() - start >= 3000) {
+	                clearInterval(checkAppOpened);
 	                window.open(webLink, "_blank", "width=auto,height=auto");
 	            }
-	        }, 2500);
-	        
-	        window.addEventListener('beforeunload', () => {
-	            clearTimeout(checkAppOpened);
-	        });
+	        }, 100); // Проверяем каждые 100 мс
 	    } else {
-	        // На десктопах сразу открываем веб-ссылку
+	        // Для десктопов сразу открываем ве б-версию
 	        window.open(webLink, "_blank", "width=auto,height=auto");
 	    }
 	});
