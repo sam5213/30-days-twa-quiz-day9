@@ -169,30 +169,17 @@ class Quiz {
 	    const url = "https://t.me/twa_quiz_30_days_bot";
 	    const title = `Мой результат в квизе ${this.correctAnswersCount} из 2! Проверь тоже свои силы в телеграм боте @twa_quiz_30_days_bot.`;
 	    
-	    // URL для открытия приложения ВКонтакте
 	    const appLink = `vk://share?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
-	    
-	    // URL для открытия в браузере
 	    const webLink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
 	
-	    // Попытка открыть приложение
 	    const start = Date.now();
-	    //window.location = appLink;
-	    window.open(appLink, "_blank", "width=auto,height=auto");
+	    const appWindow = window.open(appLink, "_blank", "width=auto,height=auto");
 	
-	    // Проверка, открыто ли приложение
-	    const checkAppOpened = setTimeout(() => {
-	        const end = Date.now();
-	        // Если прошло более 2000 мс, значит приложение не открылось
-	        if (end - start >= 2000) {
-	            // Открываем веб-ссылку
+	    setTimeout(() => {
+	        if (Date.now() - start >= 2000 && !appWindow.closed) {
 	            window.open(webLink, "_blank", "width=auto,height=auto");
 	        }
-	    }, 2000); // Проверяем через 2 секунды
-
-	    window.addEventListener('beforeunload', () => {
-	        clearTimeout(checkAppOpened);
-	    });
+	    }, 2000);
 	});
     }
 	
