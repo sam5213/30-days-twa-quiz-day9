@@ -181,14 +181,18 @@ class Quiz {
 	    window.open(appLink, "_blank", "width=auto,height=auto");
 	
 	    // Проверка, открыто ли приложение
-	    setTimeout(() => {
+	    const checkAppOpened = setTimeout(() => {
 	        const end = Date.now();
-	        if (end - start < 3000) {
-	            // Если прошло менее 2 секунд, значит приложение не открылось, открываем в браузере
-	            // window.location = webLink;
-		    window.open(webLink, "_blank", "width=auto,height=auto");
+	        // Если прошло более 2000 мс, значит приложение не открылось
+	        if (end - start >= 2000) {
+	            // Открываем веб-ссылку
+	            window.open(webLink, "_blank", "width=auto,height=auto");
 	        }
-	    }, 2500); // Проверяем через 1.5 секунды
+	    }, 2000); // Проверяем через 2 секунды
+
+	    window.addEventListener('beforeunload', () => {
+	        clearTimeout(checkAppOpened);
+	    });
 	});
     }
 	
