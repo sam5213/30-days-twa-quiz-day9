@@ -213,6 +213,21 @@ class Quiz {
 	                window.open(webLink, "_blank", "width=auto,height=auto");
 	            }
 	        }, 100); // Проверяем каждые 100 мс
+		// Добавляем обработчик события focus
+	        const focusHandler = () => {
+	            clearInterval(checkAppOpened);
+	            appWindow.removeEventListener("focus", focusHandler);
+	        };
+	        appWindow.addEventListener("focus", focusHandler);
+	
+	        // Таймер на 3000 мс
+	        setTimeout(() => {
+	            clearInterval(checkAppOpened);
+	            if (!appWindow.closed) {
+	                appWindow.close(); // Закрываем окно, если оно не закрылось
+	                window.open(webLink, "_blank", "width=auto,height=auto");
+	            }
+	        }, 3000);
 	    } else {
 	        // Для десктопов сразу открываем ве б-версию
 	        window.open(webLink, "_blank", "width=auto,height=auto");
