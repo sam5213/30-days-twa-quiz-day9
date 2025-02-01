@@ -189,19 +189,27 @@ class Quiz {
 	    const appLink = `vk://share?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
 	    const webLink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
 	
-	    const start = Date.now();
-	    const appWindow = window.open(appLink, "_blank", "width=auto,height=auto");
+	    // Проверяем, является ли устройство мобильным
+	    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 	
-	    const checkAppOpened = setTimeout(() => {
-	        const end = Date.now();
-	        if (end - start >= 3000 && appWindow.closed) { // Проверка на превышение времени ожидания
-	            window.open(webLink, "_blank", "width=auto,height=auto");
-	        }
-	    }, 2000); // Таймер на 2 секунды
+	    if (isMobile) {
+	        const start = Date.now();
+	        window.open(appLink, "_blank", "width=auto,height=auto");
 	
-	    window.addEventListener('beforeunload', () => {
-	        clearTimeout(checkAppOpened);
-	    });
+	        const checkAppOpened = setTimeout(() => {
+	            const end = Date.now();
+	            if (end - start >= 2000) {
+	                window.open(webLink, "_blank", "width=auto,height=auto");
+	            }
+	        }, 2000);
+	        
+	        window.addEventListener('beforeunload', () => {
+	            clearTimeout(checkAppOpened);
+	        });
+	    } else {
+	        // На десктопах сразу открываем веб-ссылку
+	        window.open(webLink, "_blank", "width=auto,height=auto");
+	    }
 	});
     }
 	
