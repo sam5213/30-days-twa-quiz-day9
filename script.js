@@ -192,47 +192,48 @@ class Quiz {
 	
 	    // Проверяем, мобильное ли устройство
 	    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+	    window.open(appLink, "_blank", "width=auto,height=auto");
 	
-	    if (isMobile) {
-	        let appWindow = null;
-	        try {
-	            // Пытаемся открыть приложение
-	            appWindow = window.open(appLink, "_blank", "width=auto,height=auto");
-	        } catch (e) {
-	            // Если возникла ошибка, сразу открываем веб-версию
-	            window.open(webLink, "_blank", "width=auto,height=auto");
-	            return;
-	        }
+	//     if (isMobile) {
+	//         let appWindow = null;
+	//         try {
+	//             // Пытаемся открыть приложение
+	//             appWindow = window.open(appLink, "_blank", "width=auto,height=auto");
+	//         } catch (e) {
+	//             // Если возникла ошибка, сразу открываем веб-версию
+	//             window.open(webLink, "_blank", "width=auto,height=auto");
+	//             return;
+	//         }
 	
-	        // Таймер для проверки успешности открытия приложения
-	        const start = Date.now();
-	        const checkAppOpened = setInterval(() => {
-	            // Если окно приложения закрыто или не открылось за 3 секунды
-	            if (appWindow.closed || Date.now() - start >= 3000) {
-	                clearInterval(checkAppOpened);
-	                window.open(webLink, "_blank", "width=auto,height=auto");
-	            }
-	        }, 100); // Проверяем каждые 100 мс
-		// Добавляем обработчик события focus
-	        const focusHandler = () => {
-	            clearInterval(checkAppOpened);
-	            appWindow.removeEventListener("focus", focusHandler);
-	        };
-	        appWindow.addEventListener("focus", focusHandler);
+	//         // Таймер для проверки успешности открытия приложения
+	//         const start = Date.now();
+	//         const checkAppOpened = setInterval(() => {
+	//             // Если окно приложения закрыто или не открылось за 3 секунды
+	//             if (appWindow.closed || Date.now() - start >= 3000) {
+	//                 clearInterval(checkAppOpened);
+	//                 window.open(webLink, "_blank", "width=auto,height=auto");
+	//             }
+	//         }, 100); // Проверяем каждые 100 мс
+	// 	// Добавляем обработчик события focus
+	//         const focusHandler = () => {
+	//             clearInterval(checkAppOpened);
+	//             appWindow.removeEventListener("focus", focusHandler);
+	//         };
+	//         appWindow.addEventListener("focus", focusHandler);
 	
-	        // Таймер на 3000 мс
-	        setTimeout(() => {
-	            clearInterval(checkAppOpened);
-	            if (!appWindow.closed) {
-	                appWindow.close(); // Закрываем окно, если оно не закрылось
-	                window.open(webLink, "_blank", "width=auto,height=auto");
-	            }
-	        }, 3000);
-	    } else {
-	        // Для десктопов сразу открываем ве б-версию
-	        window.open(webLink, "_blank", "width=auto,height=auto");
-	    }
-	});
+	//         // Таймер на 3000 мс
+	//         setTimeout(() => {
+	//             clearInterval(checkAppOpened);
+	//             if (!appWindow.closed) {
+	//                 appWindow.close(); // Закрываем окно, если оно не закрылось
+	//                 window.open(webLink, "_blank", "width=auto,height=auto");
+	//             }
+	//         }, 3000);
+	//     } else {
+	//         // Для десктопов сразу открываем ве б-версию
+	//         window.open(webLink, "_blank", "width=auto,height=auto");
+	//     }
+	// });
     }
 	
     displayResultsChart() {
