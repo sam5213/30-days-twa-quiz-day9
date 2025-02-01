@@ -165,6 +165,23 @@ class Quiz {
 	//     window.open(VKlink, "_blank", "width=auto,height=auto");
 	// });	
 
+	// document.getElementById("share-vk").addEventListener("click", () => {
+	//     const url = "https://t.me/twa_quiz_30_days_bot";
+	//     const title = `Мой результат в квизе ${this.correctAnswersCount} из 2! Проверь тоже свои силы в телеграм боте @twa_quiz_30_days_bot.`;
+	    
+	//     const appLink = `vk://share?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+	//     const webLink = `https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+	
+	//     const start = Date.now();
+	//     const appWindow = window.open(appLink, "_blank", "width=auto,height=auto");
+	
+	//     setTimeout(() => {
+	//         if (Date.now() - start >= 2000 && !appWindow.closed) {
+	//             window.open(webLink, "_blank", "width=auto,height=auto");
+	//         }
+	//     }, 2000);
+	// });
+
 	document.getElementById("share-vk").addEventListener("click", () => {
 	    const url = "https://t.me/twa_quiz_30_days_bot";
 	    const title = `Мой результат в квизе ${this.correctAnswersCount} из 2! Проверь тоже свои силы в телеграм боте @twa_quiz_30_days_bot.`;
@@ -175,11 +192,16 @@ class Quiz {
 	    const start = Date.now();
 	    const appWindow = window.open(appLink, "_blank", "width=auto,height=auto");
 	
-	    setTimeout(() => {
-	        if (Date.now() - start >= 2000 && !appWindow.closed) {
+	    const checkAppOpened = setTimeout(() => {
+	        const end = Date.now();
+	        if (end - start >= 3000 && appWindow.closed) { // Проверка на превышение времени ожидания
 	            window.open(webLink, "_blank", "width=auto,height=auto");
 	        }
-	    }, 2000);
+	    }, 2000); // Таймер на 2 секунды
+	
+	    window.addEventListener('beforeunload', () => {
+	        clearTimeout(checkAppOpened);
+	    });
 	});
     }
 	
